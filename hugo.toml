@@ -1,0 +1,31 @@
+baseURL = "https://go-ruby-ostruct.github.io/"
+title = "go-ruby-ostruct"
+disableKinds = ["taxonomy", "term", "RSS", "sitemap", "404"]
+
+[markup.goldmark.renderer]
+  unsafe = true
+
+[[params.phases]]
+  name = "Ordered attribute table"
+  status = "ready"
+  blurb = "The data structure underneath `OpenStruct`: an ordered, `Symbol`-keyed attribute table built from `New(pairs...)` (`OpenStruct.new(hash)`), preserving insertion order exactly as MRI's `to_h` does."
+[[params.phases]]
+  name = "Accessors"
+  status = "ready"
+  blurb = "`Get` / `Set` — the targets a reader and a `name=` writer dispatch to (`method_missing`) — plus `Index` / `SetIndex` for `[]` / `[]=`, and `RespondToField`, the table half of `respond_to_missing?`."
+[[params.phases]]
+  name = "Conversions & traversal"
+  status = "ready"
+  blurb = "`ToH` (Symbol keys, insertion order), `EachPair`, `Members`, and `Dig(keys...)` routed through a `Digger` interface so the host's Ruby values dig exactly as in MRI."
+[[params.phases]]
+  name = "delete_field & comparison"
+  status = "ready"
+  blurb = "`DeleteField` returns the old value and raises `NameError` when absent, and `Equal` / `Eql` implement `==` / `eql?` — all matching MRI's semantics."
+[[params.phases]]
+  name = "MRI-exact inspect"
+  status = "ready"
+  blurb = "`Inspect` / `String` render `#<OpenStruct name=\"John\", age=70>` byte-for-byte, through an `Inspector` interface with a built-in renderer for the common scalar/collection shapes, for deterministic ruby-free testing."
+[[params.phases]]
+  name = "Differential oracle & coverage"
+  status = "ready"
+  blurb = "The `inspect` format, `to_h` insertion ordering, and `delete_field` semantics compared against the system `ruby` byte-for-byte; 100% coverage, gofmt + go vet clean, green across all six 64-bit Go arches and three OSes."
